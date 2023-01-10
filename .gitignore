@@ -27,6 +27,9 @@
 .idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
 
+*.properties
+src/main/resources/META-INF
+*.yml
 HELP.md
 # Gradle
 .idea/**/gradle.xml
