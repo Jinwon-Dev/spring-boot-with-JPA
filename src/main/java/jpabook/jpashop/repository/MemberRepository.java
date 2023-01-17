@@ -1,17 +1,17 @@
 package jpabook.jpashop.repository;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import jpabook.jpashop.domain.Member;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
+@RequiredArgsConstructor
 public class MemberRepository {
 
-    @PersistenceContext // EntityManager를 주입 해줌
-    private EntityManager em;
+    private final EntityManager em; // 스프링 부트 라이브러리 에서는 @PersistenceContext 대신, @Autowired도 사용 가능
 
     public void save(Member member) {
         em.persist(member); // 영속성 컨텍스트에 객체를 넣음, 나중에 트랜잭션이 커밋될 때 DB에 반영
@@ -26,8 +26,7 @@ public class MemberRepository {
     }
 
     public List<Member> findByName(String name) {
-        return em.createQuery("select m from Member m where m.name = :name", Member.class)
-                .setParameter("name", name) // 파라미터 바인딩
+        return em.createQuery("select m from Member m where m.name = :name", Member.class).setParameter("name", name) // 파라미터 바인딩
                 .getResultList();
     }
 }
