@@ -1,7 +1,9 @@
 package jpabook.jpashop.domain;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
@@ -13,6 +15,7 @@ import static jakarta.persistence.FetchType.*;
 @Entity
 @Table(name = "orders") // 테이블 이름 지정
 @Getter @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED) // 기본 생성자에 protected를 붙인 것과 같다 -> 즉, 지정된 생성 메서드 이외에는 사용하지 말라는 의미!
 public class Order {
 
     @Id @GeneratedValue

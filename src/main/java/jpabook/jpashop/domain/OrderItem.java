@@ -2,13 +2,16 @@ package jpabook.jpashop.domain;
 
 import jakarta.persistence.*;
 import jpabook.jpashop.domain.item.Item;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import static jakarta.persistence.FetchType.*;
 
 @Entity
 @Getter @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED) // 기본 생성자에 protected를 붙인 것과 같다 -> 즉, 지정된 생성 메서드 이외에는 사용하지 말라는 의미!
 public class OrderItem {
 
     @Id @GeneratedValue
@@ -39,7 +42,7 @@ public class OrderItem {
 
     //==비즈니스 로직==//
     public void cancel() {
-        getItem().addStock(count);
+        getItem().addStock(count); // JPA는 UPDATE 쿼리를 알아서 날려준다!
     }
 
     //==조회 로직==//
