@@ -18,6 +18,8 @@ public class ItemRepository {
             em.persist(item);
         } else { // ID값이 있다 = 이미 DB에 등록되어 있는 것을 가져온 것
             em.merge(item); // UPDATE랑 비슷함, 강제 업데이트
+            // merge는 변경 감지와는 달리, 모든 속성이 변경된다.
+            // 따라서 실무에선 병합 시 값이 없으면 null로 업데이트 될 가능성이 있어 위험하다!
         }
     }
 
