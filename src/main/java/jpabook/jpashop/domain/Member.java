@@ -21,7 +21,6 @@ public class Member {
     @Embedded // 임베디드 타입 사용
     private Address address;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "member") // Order 테이블에 있는 member에 의해 매핑된 거울일 뿐!
     private List<Order> orders = new ArrayList<>();
 }
